@@ -1,35 +1,58 @@
 var Calculadora = {
 
-    adicionar: function(num1, num2) {
+    ADICAO: '+',
+    SUBTRACAO: '-',
+    DIVISAO: '/',
+    MULTIPLICACAO: '*',
 
-        /* Implementação para o caso de teste 4. se o primeiro valor digitado não for um numero, retorne 0*/
+
+    adicionar: function(num1, num2) {
+        return Calculadora.calcular(num1, num2, Calculadora.ADICAO)
+    },
+
+    subtrair: function(num1, num2) {
+        return Calculadora.calcular(num1, num2, Calculadora.SUBTRACAO)
+    },
+
+    dividir: function(num1, num2) {
+        if (num2 == 0) {
+            return 'Erro'
+        }
+        return Calculadora.calcular(num1, num2, Calculadora.DIVISAO)
+    },
+
+    multiplicar: function(num1, num2) {
+        return Calculadora.calcular(num1, num2, Calculadora.MULTIPLICACAO)
+    },
+
+    calcular: function(num1, num2, operacao){
+        var resultado = 0
+        num1 = parseFloat(num1)
+        num2 = parseFloat(num2)
+
         if (isNaN(num1) || isNaN(num2)) {
             return 0
         }
 
-        /* O parseInt faz a conversão do numero para inteiro*/
+        switch (operacao) {
+            case Calculadora.ADICAO:
+                resultado = num1 + num2
+                break;
+            case Calculadora.SUBTRACAO:
+                resultado = num1 - num2
+                break; 
+            case Calculadora.DIVISAO:
+                resultado = num1 / num2
+                break; 
+            case Calculadora.MULTIPLICACAO:
+                resultado = num1 * num2
+                break; 
+            default:
+                resultado = 0
+                break; 
+        }
 
-        /* Resolveu o caso de teste 2 mas deu erro no caso de teste 3
-           num1 = parseInt(num1)
-           num2 = parseInt(num2) 
-        */
-
-           num1 = parseFloat(num1)
-           num2 = parseFloat(num2)
-
-        return num1 + num2
-    },
-
-    subtrair: function(num1, num2) {
-        return 0
-    },
-
-    dividir: function(num1, num2) {
-        return 0
-    },
-
-    multiplicar: function(num1, num2) {
-        return 0
+        return resultado;
     }
 }
 
